@@ -1,0 +1,33 @@
+<div class=headerMain><h1>寺库网<a href=index.html></a></h1><ul class=headerBar style="display: block;"><li><a href=login.html>登录</a></li><li><a href=register.html>注册</a></li><li><a href=javasecript:; id=gtcart>购物车</a></li></ul><ul class=headerBar style="display: none;"><li><a href=javascript:; id=adminname></a></li><li><a href=javascript:; id=exitLogin>退出</a></li><li><a href=cart.html>购物车</a></li></ul></div><nav class=headerNav><div class=navMain><ul><li><a href=index.html>首页</a></li><li><a href="goodslist.html?ptype=bag">包袋</a></li><li><a href="goodslist.html?ptype=watch">腕表</a></li><li><a href="goodslist.html?ptype=jewelry">珠宝首饰</a></li><li><a href="goodslist.html?ptype=clothes">服装</a></li><li><a href="goodslist.html?ptype=shoes">鞋履</a></li><li><a href="goodslist.html?ptype=accessories">配饰</a></li><li><a href="goodslist.html?ptype=sports">运动</a></li><li><a href="goodslist.html?ptype=furniture">家居</a></li><li><a href="goodslist.html?ptype=beautymakeup">美妆</a></li><li><a href="goodslist.html?ptype=lifestyle">生活方式</a></li></ul><div class=navSearch><a href=javascript:;>搜索</a></div></div></nav><div id=carterror><div class=carterrorMain><div class=close>提示<span>X</span></div><div class=info>请先登录！</div><div class=btn><a href=login.html>前往登录</a> <a href=javascript:;>继续浏览</a></div></div></div><script>
+    let headerBar = $(".headerBar");
+    let headerBarAdmin = $("#adminname");
+    let exitLogin = $("#exitLogin");
+    let gtcart = $("#gtcart");
+    let carterror = $("#carterror");
+    let closecarterror = $("carterrorMain .close span");
+    let carterrora = $(".carterrorMain .btn a");
+    !function () {//登录状态
+        if (localStorage.getItem('adminname')) {//获取用户名      
+            headerBar.eq(0).hide();
+            headerBar.eq(1).show();
+            headerBarAdmin.html(localStorage.getItem('adminname'));
+        }
+        exitLogin.on("click", function () {//登出
+            headerBar.eq(0).show();
+            headerBar.eq(1).hide();
+            localStorage.removeItem('adminname');
+        })
+
+    }();
+    !function () {//购物车跳转提示
+        gtcart.on("click", function () {
+            carterror.show();
+        })
+        closecarterror.on("click", function () {
+            carterror.hide();
+        })
+        carterrora.eq(1).on("click", function () {
+            carterror.hide();
+        })
+    }();
+</script>
